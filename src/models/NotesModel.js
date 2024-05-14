@@ -52,7 +52,7 @@ const Notes = db.define('notes', {
     freezeTableName: true
 });
 
-// Create relation on to many
+// Create relation one to many
 Users.hasMany(Notes);
 Notes.belongsTo(Users, { foreignKey: "userId" });
 
