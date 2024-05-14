@@ -40,3 +40,10 @@ export const getUser = async(req, res) => {
     if (!user) return res.status(404).json({message: "User not found"});
     res.status(200).json({data: user});
 }
+
+export const logout = async(req, res) => {
+    req.session.destroy((err) => {
+        if (err) return res.status(400).json({msg: "Cannot log out"});
+        res.status(200).json({msg: "Successfully logged out"})
+    })
+}
