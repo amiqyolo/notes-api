@@ -6,3 +6,6 @@
 
 # env file
 .env
+
+# assets image
+/public/images/*
