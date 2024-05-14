@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import FileUpload from "express-fileupload";
 import NotesRoute from "./routes/NotesRoute.js";
 import Notes from "./models/NotesModel.js";
 import db from './config/Database.js';
@@ -8,6 +9,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(FileUpload());
 app.use(NotesRoute);
 
 // Notes.sync();
