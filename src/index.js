@@ -6,6 +6,7 @@ import SequelizeStore from "connect-session-sequelize";
 import session from "express-session";
 import NotesRoute from "./routes/NotesRoute.js";
 import UsersRoute from "./routes/UsersRoute.js";
+import AuthRoute from "./routes/AuthRoute.js";
 import db from './config/Database.js';
 import Notes from "./models/NotesModel.js";
 dotenv.config(); // load .env file
@@ -36,7 +37,8 @@ app.use(express.json());
 app.use(FileUpload());
 app.use(express.static('public'));
 app.use(NotesRoute);
-app.use(UsersRoute)
+app.use(UsersRoute);
+app.use(AuthRoute);
 
 // Notes.sync();
 
