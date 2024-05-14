@@ -3,7 +3,9 @@ import path from "path";
 
 export const getNotes = async(req, res) => {
     try {
-        const response = await Notes.findAll();
+        const response = await Notes.findAll({
+            attributes: ['uuid', 'title', 'content', 'image', 'url', 'updatedAt'],
+        });
         res.status(200).json({data: response})
     } catch (error) {
         res.status(500).json({message: error.message});
@@ -43,4 +45,21 @@ export const createNote = async(req, res) => {
             res.status(500).json({message: error.message});
         }
     });
+}
+
+export const getNoteById = async(req, res) => {
+    try {
+      const response = await Notes.findOne({
+        attributes: ['uuid', 'title', 'content', 'image', 'url', 'updatedAt'],
+        where: {
+            uuid: req.params.id
+        }
+      });
+
+      if (!response) return res.status(404).json({message: "Note data not found"});
+
+      res.status(200).json({data: response});
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
 }
