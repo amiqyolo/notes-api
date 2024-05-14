@@ -1,0 +1,26 @@
+{
+  "name": "notes-backend",
+  "version": "1.0.0",
+  "description": "A Note backend built with express and integrate with SQL database.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amiqyolo/notes-api.git"
+  },
+  "keywords": [
+    "notes",
+    "api",
+    "backend",
+    "express",
+    "mysql"
+  ],
+  "author": "Amiq Dian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amiqyolo/notes-api/issues"
+  },
+  "homepage": "https://github.com/amiqyolo/notes-api#readme"
+}
