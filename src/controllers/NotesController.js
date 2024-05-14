@@ -120,3 +120,29 @@ export const updateNote = async(req, res) => {
         res.status(500).json({message: error.message});
     }
 }
+
+export const deleteNote = async(req, res) => {
+    const note = await Notes.findOne({
+        where: {
+            uuid: req.params.id
+        }
+    });
+
+    if (!note) return res.status(404).json({message: "Note data with ID not found"});
+
+    try {
+        const filePath = `./public/images/${note.image}`;
+
+        await Notes.destroy({
+            where: {
+                uuid: note.uuid
+            }
+        });
+
+        fs.unlinkSync(filePath);
+
+        res.status(200).json({message: "Note data has been deleted"});
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+}
