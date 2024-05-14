@@ -3,8 +3,8 @@ import path from "path";
 
 export const getNotes = async(req, res) => {
     try {
-        const response = Notes.findAll();
-        res.status(200).json(response)
+        const response = await Notes.findAll();
+        res.status(200).json({data: response})
     } catch (error) {
         res.status(500).json({message: error.message});
     }
@@ -29,13 +29,16 @@ export const createNote = async(req, res) => {
         if (err) return res.status(500).json({message: err.message});
 
         try {
-            await Notes.create({
+            const response = await Notes.create({
                 title: title,
                 content: content,
                 image: fileName,
                 url: url
             });
-            res.status(201).json({message: "Note has been created"});
+            res.status(201).json({
+                data: response,
+                message: "Note has been created"
+            });
         } catch (error) {
             res.status(500).json({message: error.message});
         }
